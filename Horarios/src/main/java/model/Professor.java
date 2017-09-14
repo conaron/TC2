@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.text.Normalizer;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ public class Professor implements Serializable {
 
     public Professor(int id, String nome) {
         this.id = id;
-        this.nome = nome;
+        this.nome = Normalizer.normalize(nome, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase();
     }
 
     public int getId() {
@@ -30,6 +31,14 @@ public class Professor implements Serializable {
 
     public String getNome() {
         return nome;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNome(String nome) {
+        this.nome = Normalizer.normalize(nome, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase();
     }
 
     @Override
