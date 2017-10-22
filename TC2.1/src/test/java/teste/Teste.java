@@ -5,7 +5,8 @@
  */
 package teste;
 
-import model.Aluno;
+import model.Adm;
+import util.CrudUtil;
 
 /**
  *
@@ -14,9 +15,28 @@ import model.Aluno;
 public class Teste {
 
     public static void main(String[] args) {
+        String saida;
+        CrudUtil crud = new CrudUtil();
+
+        Adm teste = new Adm();
+        teste.setNome("Airton");
+        teste.setUsuario("airton");
+        teste.setSenha("senha");
         
+        System.out.println(crud.insere(teste));
         
+
+        for (Object r : crud.lista(teste)) {
+
+            System.out.println(""
+                    + r.toString()
+                    + ""
+            );
+        }
         
+//        ConexaoDao conexao = new ConexaoDao();
+//        conexao.encerra_sessao();
+
     }
-    
+
 }
