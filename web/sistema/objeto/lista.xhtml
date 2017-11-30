@@ -1,0 +1,64 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:param name="lista" value="#{bean.lista(objeto, 0)}" />
+
+    <c:choose>
+        <c:when test="#{lista != null}">
+            <p:dataTable var="registro" value="#{lista}" tableStyle="width:auto">
+                <f:facet name="header">
+                    Objetos IoT Cadastrados
+                </f:facet>
+
+                <p:columnGroup type="header">
+                    <p:column headerText="id" />
+                    <p:column headerText="Nome" />
+                    <p:column headerText="Descrição" />
+                    <p:column colspan="2" headerText="Util" />
+                </p:columnGroup>
+
+                <p:column>
+                    <h:outputText value="#{registro.id}" />
+                </p:column>
+
+                <p:column>
+                    <h:outputText value="#{registro.nome}" />
+                </p:column>
+
+                <p:column>
+                    <h:outputText value="#{registro.descricao}" />
+                </p:column>
+
+                <p:column>
+                    <h:form style="margin:auto; border-style: hidden">
+                        <p:commandLink ajax="false" update="corpo" action="#{bean.detalha(registro)}" >
+                            <h:graphicImage  alt="Alterar" value="../../img/ico/editar.png" width="30px" height="30px" />
+                        </p:commandLink>
+                    </h:form>
+                </p:column>
+
+                <p:column styleClass="botaoAlinhamento" style="padding: auto; margin: auto;">
+                    <h:form>
+                        <p:commandLink  ajax="false" update="growl corpo" action="#{bean.remove(registro)}" >
+                            <h:graphicImage alt="Excluir" value="../../img/ico/excluir.png" width="30px" height="30px" />
+                        </p:commandLink>
+                    </h:form>
+                </p:column>
+
+            </p:dataTable>
+            <p:spacer height="100" />
+        </c:when>
+
+        <c:otherwise>
+            <h1>Nenhum registro encontrado</h1>
+        </c:otherwise>
+
+    </c:choose>
+
+</ui:composition>

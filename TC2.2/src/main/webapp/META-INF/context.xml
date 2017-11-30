@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context path="/TC2.2">
-  <Resource auth="Container" driverClassName="org.postgresql.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="fonte" password="ifrs" type="javax.sql.DataSource" url="jdbc:postgresql://ifrs:5432/pw3" username="ifrs"/>
-</Context>
